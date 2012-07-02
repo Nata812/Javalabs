@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 28.06.2012 20:04:45 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="ru.itva.propertyframework.logic.Family" table="T_FAMILY">
+        <id name="id" type="java.lang.Long">
+            <column name="family_id" />
+            <generator class="increment" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="name" />
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="description" />
+        </property>
+        <set name="styles" cascade="all" lazy="false"  inverse="true">
+			<key column="family_id" />
+			<one-to-many class="ru.itva.propertyframework.logic.Style" />
+		</set>
+    </class>
+</hibernate-mapping>

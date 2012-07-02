@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 28.06.2012 20:04:45 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="ru.itva.propertyframework.logic.ObjectValue" table="T_OBJECT_VALUE">
+        <id name="id" type="java.lang.Long">
+            <column name="object_value_id" />
+            <generator class="increment" />
+        </id>
+        <property name="object_id" type="java.lang.Long">
+            <column name="object_id" />
+        </property>
+        <property name="style_id" type="java.lang.Long">
+            <column name="style_id" />
+        </property>
+        <property name="value" type="java.lang.String">
+            <column name="value" />
+        </property>
+    </class>
+</hibernate-mapping>

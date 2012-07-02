@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 28.06.2012 20:04:45 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="ru.itva.propertyframework.logic.T_Class" table="T_CLASS">
+        <id name="id" type="java.lang.Long">
+            <column name="class_id" />
+            <generator class="increment" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="name" />
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="description" />
+        </property>
+		<set name="objects" cascade="all" lazy="false"  inverse="true">
+			<key column="object_id" />
+			<one-to-many class="ru.itva.propertyframework.logic.T_Object" />
+		</set>
+		<set name="styles" table="T_CLASS_STYLE" lazy="false">
+			<key column="class_id" />
+			<!-- <one-to-many class="logic.Driver" /> -->
+			<many-to-many column="style_id" class="ru.itva.propertyframework.logic.Style" />
+		</set>
+    </class>
+</hibernate-mapping>

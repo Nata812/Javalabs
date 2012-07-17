@@ -1,23 +1,43 @@
 package ru.spbstu.telematics.stu.museum;
 
-public class Director implements Runnable{
+public class Director implements Runnable {
 	private Museum museum;
+
 	public Director(Museum museum) {
-		this.museum = museum;
+		this.setMuseum(museum);
 	}
-	
-	public void openMuseum() {
-		museum.isOpened = true;
-		System.out.println("Open the museum!");
+
+	public synchronized void openMuseum() {
+		synchronized (museum) {
+			museum.notifyAll();
+			getMuseum().isOpened = true;
+			System.out.println("Open the museum!");
+			try {
+				getMuseum().wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
-	
-	public void closeMuseum() {
-		museum.isOpened = false;
-		System.out.println("Close the museum!");
+
+	public synchronized void closeMuseum() {
+		synchronized (museum) {
+			museum.notifyAll();
+			getMuseum().isOpened = false;
+			System.out.println("Close the museum!");
+			try {
+				getMuseum().wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
+
 	@Override
 	public void run() {
-		while(true) {
+		while (true) {
 			closeMuseum();
 			try {
 				Thread.sleep(5000);
@@ -31,5 +51,13 @@ public class Director implements Runnable{
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public Museum getMuseum() {
+		return museum;
+	}
+
+	public void setMuseum(Museum museum) {
+		this.museum = museum;
 	}
 }

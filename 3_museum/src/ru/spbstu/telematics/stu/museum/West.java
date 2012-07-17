@@ -26,13 +26,15 @@ public class West implements Runnable {
 				}
 			}
 		}
+
 	}
 
 	private void pass() throws InterruptedException {
 		if (!exitQueue.isEmpty()) {
 			Visitor oldVisitor = exitQueue.poll();
 			System.out.println(oldVisitor + " left the museum");
-			//Thread.sleep(2000);
+			// Thread.sleep(2000);
 		}
 	}
+
 }

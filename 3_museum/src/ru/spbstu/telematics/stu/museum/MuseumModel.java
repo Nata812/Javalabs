@@ -22,5 +22,4 @@ public class MuseumModel {
 			System.out.println("Visitor"+i+" is waiting to enter");
 		}
 	}
-
 }
